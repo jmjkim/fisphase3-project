@@ -23,11 +23,7 @@ class ApplicationController < Sinatra::Base
       end
     end
 
-    delete "/departments/:id" do
-      EngineDepartment.find(params[:id]).destroy
-    end
-
-
+    
     # Engine Controller -> CRUD
     get "/departments/engines" do
       engines = Engine.all

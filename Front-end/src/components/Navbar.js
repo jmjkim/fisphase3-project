@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
+
 const Navbar = ({storedDepartmentId}) => { 
     const engineTables = document.querySelectorAll("#eid")
 
@@ -24,17 +25,12 @@ const Navbar = ({storedDepartmentId}) => {
             headers: {'Content-type': 'application/json'}
         })
         .then(alert("Removed engine sucessfully"))
-        .then(() => {
-            e.target[0].value = ""
-            window.location.reload()
-        })
+        .then(() => e.target[0].value = "")
         .catch(err => alert(err.message))
     }
 
     return (
         <nav>
-            {/* <h2 style={{"marginBottom": -30}}>List of {storedDepartment.toUpperCase()} Engines</h2> */}
-
             <div className="crud_form_button_container">
                 <Link to="/departments/create">
                     <input className="create_form_button" type="button" value="Create Department"/>

@@ -1,18 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-
 import Navbar from "./Navbar"
 
-const EngineDisplayer = ({storedDepartmentId}) => {
-    const [engines, setEngines] = useState([])
 
-    useEffect(() => {
-        fetch(`http://localhost:9292/departments/${storedDepartmentId}/engines`)
-        .then(r => r.json())
-        .then(setEngines)
-        .catch(err => alert(err.message))
-      }, [storedDepartmentId])
-  
+const EngineDisplayer = ({storedDepartmentId, engines}) => {
     if (engines.length === 0) {
         return (
             <>
@@ -31,16 +22,16 @@ const EngineDisplayer = ({storedDepartmentId}) => {
                         return (
                             <React.Fragment key={engine.id}>
                                 <Link to={`/departments/${storedDepartmentId}/engines/update`} className="link">
-                                    <div className="list_of_engine_row" onClick={() => {
+                                    <div className="engine_container" onClick={() => {
                                             sessionStorage.setItem("storedEngineObjKeys", Object.keys(engine))
                                             sessionStorage.setItem("storedEngineObjValues", Object.values(engine))
                                         }}>
 
-                                        <div className="number_of_engine_container">
-                                            <b>Engine Number #{index + 1}</b>
+                                        <div className="engine_container_number">
+                                            Engine Number #{index + 1}
                                         </div>
 
-                                        <div className="list_of_engine_non_part_container">
+                                        <div className="engine_container_non_part_container">
                                             <div><b>Engine ID:</b> <span id="eid">{engine.manufactured_engine_id}</span></div>
                                             <div><b>VIN:</b> {engine.associated_vehicle_vin}</div>
                                             <div><b>Layout:</b> {engine.engine_layout}</div>
@@ -52,7 +43,7 @@ const EngineDisplayer = ({storedDepartmentId}) => {
                                             <div className="incompleted_status">Red: Incomplete</div>
                                         </div>
 
-                                        <div className="list_of_engine_part_dotted_container"> 
+                                        <div className="engine_container_dotted_container"> 
                                             {engine.camshaft_built ? <div className="completed_status">camshaft_built</div> :
                                                                      <div className="incompleted_status">camshaft_built</div>}
 

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const DepartmentForm = ({storedDepartmentId}) => {
+
+const DepartmentForm = ({storedDepartmentId, setDepartments, departments}) => {
     const [formData, setFormData] = useState({
         name: "",
         department_of_engine_type: "",
@@ -24,9 +25,9 @@ const DepartmentForm = ({storedDepartmentId}) => {
             body: JSON.stringify(formData)
         })
         .then(r => r.json())
-        .then(() => {
+        .then((newDepartment) => {
             alert("New Department created")
-            window.location.reload()
+            setDepartments([...departments, newDepartment])
         })
         .catch(() => alert("Department already exists!"))
     }
