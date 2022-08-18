@@ -38,7 +38,7 @@ const App = () => {
         <Routes>
           <Route path={`/departments/${storedDepartmentId}/engines`} exact element={<EngineDisplayer storedDepartmentId={storedDepartmentId} engines={engines}/>}/> 
           <Route path={`/departments/create`} exact element={<DepartmentForm storedDepartmentId={storedDepartmentId} setDepartments={setDepartments} departments={departments}/>}/>
-          <Route path={`/departments/${storedDepartmentId}/engines/create`} exact element={<CreateEngineForm storedDepartmentId={storedDepartmentId}/>}/>
+          <Route path={`/departments/${storedDepartmentId}/engines/create`} exact element={<CreateEngineForm storedDepartmentId={storedDepartmentId} setEngines={setEngines} engines={engines}/>}/>
           <Route path={`/departments/${storedDepartmentId}/engines/update`} exact element={<UpdateEngineForm storedDepartmentId={storedDepartmentId}/>}/>
         </Routes>
       </Router>

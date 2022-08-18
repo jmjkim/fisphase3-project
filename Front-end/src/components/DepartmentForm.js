@@ -6,7 +6,6 @@ const DepartmentForm = ({storedDepartmentId, setDepartments, departments}) => {
     const [formData, setFormData] = useState({
         name: "",
         department_of_engine_type: "",
-        contact: ""
     })
 
     const handleChange = (e) => {
@@ -40,8 +39,6 @@ const DepartmentForm = ({storedDepartmentId, setDepartments, departments}) => {
             <div className="form_head_input1_container">
                 <label>Name <input name="name" type="text" onChange={handleChange} maxLength={20} required={true}/></label>
                 <label>Department of Engine Type <input name="department_of_engine_type" type="text" placeholder="ex: sedan, SUV" onChange={handleChange} maxLength={10} required={true}/></label>
-                <label>Contact <input name="contact" type="text" onChange={handleChange} maxLength={50}/></label>
-                <span style={{"opacity": "50%"}}>Contact Format: John Doe 123-456-7890 abc@email.com</span>
             </div>
 
             <div className="form_head_button_container">

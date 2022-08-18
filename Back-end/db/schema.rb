@@ -15,11 +15,10 @@ ActiveRecord::Schema.define(version: 2022_08_04_013320) do
   create_table "engine_departments", force: :cascade do |t|
     t.string "department_of_engine_type"
     t.string "name"
-    t.string "contact"
   end
 
   create_table "engines", force: :cascade do |t|
-    t.string "department_id"
+    t.integer "department_id"
     t.string "engine_type"
     t.string "manufactured_engine_id"
     t.string "associated_vehicle_vin"

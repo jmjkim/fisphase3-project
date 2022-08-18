@@ -4,13 +4,11 @@ puts "🌱 Seeding spices..."
 EngineDepartment.create(
     name: "Western Sedan Engineering", 
     department_of_engine_type: "sedan", 
-    contact: "Anderson Heimer 925-987-6543 ah123sedan@abc.com"
     )
 
 EngineDepartment.create(
     name: "Western SUV Engineering",
     department_of_engine_type: "suv", 
-    contact: "James Gilton 923-117-7535 jg123suv@abc.com"
     )
 
 # Seed Engines

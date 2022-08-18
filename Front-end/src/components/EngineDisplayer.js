@@ -20,7 +20,8 @@ const EngineDisplayer = ({storedDepartmentId, engines}) => {
                 <div className="list_of_engine_container">
                     {Object.values(engines).map((engine, index) => {
                         return (
-                            <React.Fragment key={engine.id}>
+                            engine.department_id === parseInt(storedDepartmentId) ? 
+                            <React.Fragment key={engine.manufactured_engine_id}>
                                 <Link to={`/departments/${storedDepartmentId}/engines/update`} className="link">
                                     <div className="engine_container" onClick={() => {
                                             sessionStorage.setItem("storedEngineObjKeys", Object.keys(engine))
@@ -67,7 +68,7 @@ const EngineDisplayer = ({storedDepartmentId, engines}) => {
                                         </div>
                                     </div>
                                 </Link>
-                            </React.Fragment>
+                            </React.Fragment> : <h2>Associated Department ID does not match!</h2>
                         )})}
                 </div>
             </>
