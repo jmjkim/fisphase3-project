@@ -15,6 +15,8 @@ This application is ideal for Vehicle Engine Factory Staffs who needs to view an
 - **Create** New Engine or Department
 - **Search** or **Delete** specific Engine
 
+Dashboard interface allows users to easily navigate, manages each engine's status.
+
 
 ## Description
 - Database interaction by using Active Record
