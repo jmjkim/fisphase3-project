@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
 
-
-const CreateEngineForm = ({storedDepartmentId, setEngines, engines}) => {
+const CreateEngineForm = ({storedDepartmentId}) => {
     const [formData, setFormData] = useState({
         engine_type: "",
         engine_layout: "",
@@ -24,10 +23,7 @@ const CreateEngineForm = ({storedDepartmentId, setEngines, engines}) => {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(formData)})
             .then(r => r.json())
-            .then((newEngine) => {
-                setEngines([...engines, newEngine])
-                alert("New engine created")
-            })
+            .then(() => alert("New engine created"))
             .catch(err => alert(err.message))
     }
 

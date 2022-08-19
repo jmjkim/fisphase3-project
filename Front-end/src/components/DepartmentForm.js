@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-
 const DepartmentForm = ({storedDepartmentId, setDepartments, departments}) => {
     const [formData, setFormData] = useState({
         name: "",
         department_of_engine_type: "",
+        contact: ""
     })
 
     const handleChange = (e) => {
@@ -25,8 +25,8 @@ const DepartmentForm = ({storedDepartmentId, setDepartments, departments}) => {
         })
         .then(r => r.json())
         .then((newDepartment) => {
-            alert("New Department created")
             setDepartments([...departments, newDepartment])
+            alert("New Department created")
         })
         .catch(() => alert("Department already exists!"))
     }

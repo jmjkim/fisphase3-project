@@ -16,14 +16,14 @@ class ApplicationController < Sinatra::Base
       check_department = EngineDepartment.exists?(:id => params[:department_id])
 
       unless check_department === true
-        new_department = EngineDepartment.create(name: params[:name], department_of_engine_type: params[:department_of_engine_type], contact: params[:contact])
+        new_department = EngineDepartment.create(name: params[:name], department_of_engine_type: params[:department_of_engine_type])
         new_department.to_json
       else
         puts "Department already exists" 
       end
     end
 
-    
+
     # Engine Controller -> CRUD
     get "/departments/engines" do
       engines = Engine.all
@@ -35,10 +35,18 @@ class ApplicationController < Sinatra::Base
       engines.to_json
     end
 
+    get "/departments/:id/engines/:manufactured_engine_id" do
+      engines = Engine.all.where(department_id: params[:id], manufactured_engine_id: params[:manufactured_engine_id])
+      engines.to_json
+    end
+
     post "/departments/:id/engines" do
+      department = EngineDepartment.all.find(params[:id])
+      department.to_json
+
       new_engine = Engine.create(
         department_id: params[:id],
-        engine_type: params[:engine_type], 
+        engine_type: department.department_of_engine_type, 
         manufactured_engine_id: Faker::Alphanumeric.alphanumeric(number:8), 
         associated_vehicle_vin: Faker::Vehicle.vin, 
         engine_layout: params[:engine_layout], 

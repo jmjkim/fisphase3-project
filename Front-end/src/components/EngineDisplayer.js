@@ -1,27 +1,44 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+
 import Navbar from "./Navbar"
 
 
-const EngineDisplayer = ({storedDepartmentId, engines}) => {
+const EngineDisplayer = ({storedDepartmentId}) => {
+    const [engines, setEngines] = useState([])
+    const [searchedEngineId, setSearchedEngineId] = useState("")
+
+    useEffect(() => {
+        fetch(`http://localhost:9292/departments/${storedDepartmentId}/engines`)
+        .then(r => r.json())
+        .then(setEngines)
+        .catch(err => alert(err.message))
+      }, [storedDepartmentId])
+
+    const handleSearch = (e) => {
+        setSearchedEngineId(e.target.value)
+    }
+
+    const searchedEngine = [...engines].filter(engine => engine.manufactured_engine_id === searchedEngineId)
+  
     if (engines.length === 0) {
         return (
             <>
-                <Navbar storedDepartmentId={storedDepartmentId}/>
-                <h2>Engine does not exist</h2>
+                <Navbar storedDepartmentId={storedDepartmentId} handleSearch={handleSearch}/>
+                <h2>No engine to display</h2>
             </>
         )
     }
+
     else
         return (
-            <>
-                <Navbar storedDepartmentId={storedDepartmentId}/>
+            <> 
+                <Navbar storedDepartmentId={storedDepartmentId} setSearchedEngineId={setSearchedEngineId} handleSearch={handleSearch}/>
 
                 <div className="list_of_engine_container">
-                    {Object.values(engines).map((engine, index) => {
+                    {Object.values(searchedEngine.length > 0 ? searchedEngine : engines).map((engine, index) => {
                         return (
-                            engine.department_id === parseInt(storedDepartmentId) ? 
-                            <React.Fragment key={engine.manufactured_engine_id}>
+                            <div key={engine.id}>
                                 <Link to={`/departments/${storedDepartmentId}/engines/update`} className="link">
                                     <div className="engine_container" onClick={() => {
                                             sessionStorage.setItem("storedEngineObjKeys", Object.keys(engine))
@@ -29,7 +46,7 @@ const EngineDisplayer = ({storedDepartmentId, engines}) => {
                                         }}>
 
                                         <div className="engine_container_number">
-                                            Engine Number #{index + 1}
+                                            <b>Engine Number #{index + 1}</b>
                                         </div>
 
                                         <div className="engine_container_non_part_container">
@@ -68,7 +85,7 @@ const EngineDisplayer = ({storedDepartmentId, engines}) => {
                                         </div>
                                     </div>
                                 </Link>
-                            </React.Fragment> : <h2>Associated Department ID does not match!</h2>
+                            </div>
                         )})}
                 </div>
             </>

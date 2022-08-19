@@ -34,20 +34,21 @@ h2 {
 }
 
 .select_department_container {
+  font-size: 20px;
   margin: -2% auto 2.5% auto;
   text-align: center;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: column; 
+  justify-content: space-evenly;
   width: 50%;
   background-color:rgb(50, 50, 50);
   padding: 10px;
   color: rgb(255, 255, 255);
-  overflow: scroll;
+  overflow-wrap: break-word;
 }
 
-.select_department_container label {
-  margin-left: 20px;
+.department_displayer {
+  color: rgb(255, 255, 255);
 }
 
 .crud_form_button_container {
@@ -59,7 +60,7 @@ h2 {
 
 .crud_form_button_container input {
   cursor: pointer;
-  margin-left: 4px;
+  margin-left: 2px;
 }
 
 .form_head_container {
