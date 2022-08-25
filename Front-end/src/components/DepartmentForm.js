@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+
 const DepartmentForm = ({storedDepartmentId, setDepartments, departments}) => {
     const [formData, setFormData] = useState({
-        name: "",
         department_of_engine_type: "",
-        contact: ""
+        name: "",
     })
 
     const handleChange = (e) => {
@@ -37,8 +37,8 @@ const DepartmentForm = ({storedDepartmentId, setDepartments, departments}) => {
             <br/>
 
             <div className="form_head_input1_container">
-                <label>Name <input name="name" type="text" onChange={handleChange} maxLength={20} required={true}/></label>
-                <label>Department of Engine Type <input name="department_of_engine_type" type="text" placeholder="ex: sedan, SUV" onChange={handleChange} maxLength={10} required={true}/></label>
+                <label>Name <input name="name" type="text" onChange={handleChange} maxLength={20} required={true} autoComplete="off"/></label>
+                <label>Department of Engine Type <input name="department_of_engine_type" type="text" placeholder="ex: sedan, SUV" onChange={handleChange} maxLength={10} required={true} autoComplete="off"/></label>
             </div>
 
             <div className="form_head_button_container">

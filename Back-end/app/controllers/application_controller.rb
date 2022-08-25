@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
     end
 
     post "/departments" do
-      check_department = EngineDepartment.exists?(:id => params[:department_id])
+      check_department = EngineDepartment.exists?(:department_of_engine_type => params[:department_of_engine_type])
 
       unless check_department === true
         new_department = EngineDepartment.create(name: params[:name], department_of_engine_type: params[:department_of_engine_type])
@@ -24,6 +24,8 @@ class ApplicationController < Sinatra::Base
     end
 
 
+    
+
     # Engine Controller -> CRUD
     get "/departments/engines" do
       engines = Engine.all
@@ -31,12 +33,12 @@ class ApplicationController < Sinatra::Base
     end
 
     get "/departments/:id/engines" do
-      engines = Engine.all.where(department_id: params[:id])
+      engines = Engine.all.where(engine_department_id: params[:id])
       engines.to_json
     end
 
     get "/departments/:id/engines/:manufactured_engine_id" do
-      engines = Engine.all.where(department_id: params[:id], manufactured_engine_id: params[:manufactured_engine_id])
+      engines = Engine.all.where(engine_department_id: params[:id], manufactured_engine_id: params[:manufactured_engine_id])
       engines.to_json
     end
 
@@ -45,7 +47,7 @@ class ApplicationController < Sinatra::Base
       department.to_json
 
       new_engine = Engine.create(
-        department_id: params[:id],
+        engine_department_id: params[:id],
         engine_type: department.department_of_engine_type, 
         manufactured_engine_id: Faker::Alphanumeric.alphanumeric(number:8), 
         associated_vehicle_vin: Faker::Vehicle.vin, 
@@ -79,7 +81,6 @@ class ApplicationController < Sinatra::Base
 
     delete "/departments/engines/:manufactured_engine_id" do
       deleting_engine = Engine.all.find_by(manufactured_engine_id: params[:manufactured_engine_id])
-
       deleting_engine.destroy
     end
 end

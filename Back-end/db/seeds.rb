@@ -18,7 +18,7 @@ boolean = [true, false]
 
 12.times do
     Engine.create(
-        department_id: 1,
+        engine_department_id: 1,
         engine_type: "sedan",
         manufactured_engine_id: Faker::Alphanumeric.alphanumeric(number:8),
         associated_vehicle_vin: Faker::Vehicle.vin,
@@ -36,7 +36,7 @@ end
 
 12.times do 
     Engine.create(
-        department_id: 2,
+        engine_department_id: 2,
         engine_type: "suv",
         manufactured_engine_id: Faker::Alphanumeric.alphanumeric(number:8),
         associated_vehicle_vin: Faker::Vehicle.vin,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
+
 const Navbar = ({storedDepartmentId, handleSearch}) => { 
     const handleDeleteSubmit = (e) => {
         fetch(`http://localhost:9292/departments/engines/${e.target[0].value}`, {
