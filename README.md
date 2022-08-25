@@ -4,7 +4,7 @@ Engine Manufacturing Status Manager is a full-stack web application for my phase
 
 This application is ideal for Vehicle Engine Factory Staffs who needs to view and manage engines that are being manufactured.
 
-<!-- **[View App demonstration in-progress]()** -->
+[View App demonstration](https://dev.to/jmjkim/fis-phase-3-project-demonstration-emn-f-manager-1ch)
 
 > All information used in this project is not real.
 
